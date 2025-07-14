@@ -1,33 +1,68 @@
-<p id="percentage">النسبة المئوية: جاري الحساب...</p>
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <title>نتيجة الطالب</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>نتيجة الثانوية العامة 2025</title>
+    <style>
+        body { font-family: Arial; background: white; text-align: center; padding: 30px; }
+        .container { max-width: 600px; margin: auto; }
+        .subject { margin: 5px 0; }
+        .green { color: green; font-weight: bold; margin-top: 20px; }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <header class="moe-header">
-      <img src="logo.png" alt="شعار وزارة التربية والتعليم" class="moe-logo">
-      <h1>وزارة التربية والتعليم</h1>
-    </header>
-    <h2>نتيجة الثانوية العامة 2025</h2>
-    <p><strong>اسم الطالب:</strong> <span id="name"></span></p>
-    <p><strong>رقم الجلوس:</strong> <span id="seat"></span></p>
-    <p><strong>الرقم القومي:</strong> <span id="nid"></span></p>
-    <p><strong>شعبة الطالب:</strong> <span id="division"></span></p>
+    <img src="logo.png" alt="شعار الوزارة" width="120"><br><br>
+    <h2>وزارة التربية والتعليم المصرية</h2>
+    <div class="container">
+        <h3>نتيجة الثانوية العامة 2025</h3>
+        <p>الاسم: <span id="name"></span></p>
+        <p>رقم الجلوس: <span id="seat"></span></p>
+        <p>الرقم القومي: <span id="nid"></span></p>
+        <p>الشعبة: <span id="section"></span></p>
+        <h4>الدرجات:</h4>
+        <div id="grades"></div>
 
-    <h3>الدرجات:</h3>
-    <ul id="grades"></ul>
-  </div>
-  <script src="script.js"></script>
+        <p><strong>الطالب تخطى المواد التي لا تضاف إلى المجموع:</strong></p>
+        <div>
+            <p>التربية الدينية</p>
+            <p>التربية الوطنية</p>
+            <p>اللغة الأجنبية الثانية</p>
+        </div>
+
+        <p class="green">الطالب ناجح في الدور الأول</p>
+    </div>
+    <br><br>
+    <footer>جميع الحقوق محفوظة © وزارة التربية والتعليم المصرية</footer>
+
+    <script>
+        const name = localStorage.getItem("name");
+        const seat = localStorage.getItem("seat");
+        const nid = localStorage.getItem("nid");
+        const section = localStorage.getItem("section");
+
+        document.getElementById("name").textContent = name;
+        document.getElementById("seat").textContent = seat;
+        document.getElementById("nid").textContent = nid;
+        document.getElementById("section").textContent = section;
+
+        const subjects = {
+            "علمي علوم": ["اللغة العربية", "الفيزياء", "الكيمياء", "الأحياء", "الرياضيات", "الجيولوجيا"],
+            "علمي رياضة": ["اللغة العربية", "الفيزياء", "الكيمياء", "الرياضيات", "الجيولوجيا", "الأحياء"],
+            "أدبي": ["اللغة العربية", "التاريخ", "الجغرافيا", "علم النفس", "الفلسفة", "الاقتصاد"]
+        };
+
+        const container = document.getElementById("grades");
+        const selectedSubjects = subjects[section] || [];
+
+        selectedSubjects.forEach(subj => {
+            let min = subj === "اللغة العربية" ? 60 : 40;
+            let max = subj === "اللغة العربية" ? 80 : 60;
+            let grade = Math.floor(Math.random() * (max - min + 1)) + min;
+            let p = document.createElement("p");
+            p.className = "subject";
+            p.textContent = `${subj}: ${grade} من ${max}`;
+            container.appendChild(p);
+        });
+    </script>
 </body>
 </html>
-<p id="total-grade"></p>
-<p id="percentage"></p>
-<div id="result-comments" style="margin-top: 20px;">
-  <p style="font-weight: bold; color: green;">الطالب ناجح في الدور الأول</p>
-  <p style="color: #333;">الطالب ناجح ومتخطي المواد التي لا تُضاف (التربية الدينية، التربية الوطنية، اللغة الثانية)</p>
-</div>
-
