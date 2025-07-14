@@ -45,10 +45,10 @@ function generateGrades(division) {
       grade = 0;
     } else {
       if (subject === "اللغة العربية") {
-    grade = Math.floor(Math.random() * 19) + 62; // من 62 إلى 80
-} else {
-    grade = Math.floor(Math.random() * 16) + 45; // من 45 إلى 60
-}
+        grade = Math.floor(Math.random() * 31) + 50; // 50 إلى 80
+      } else {
+        grade = Math.floor(Math.random() * 31) + 30; // 30 إلى 60
+      }
     }
 
     return {
@@ -74,52 +74,3 @@ if (window.location.pathname.includes("result.html")) {
     gradesList.appendChild(li);
   });
 }
-// بعد حساب درجات المواد داخل صفحة result.html
-
-function calculatePercentage(totalGrades) {
-    const maxTotal = 320; // المجموع الكلي النهائي
-    const percentage = (totalGrades / maxTotal) * 100;
-    return percentage.toFixed(2); // ترجيع النسبة برقم عشري من خانتين
-}
-
-// مثال: حساب مجموع الدرجات وإظهار النسبة
-function displayResult() {
-    const grades = JSON.parse(localStorage.getItem('studentGrades') || '[]');
-    const total = grades.reduce((sum, g) => sum + g.grade, 0);
-
-    // حساب النسبة المئوية
-    const percentage = calculatePercentage(total);
-
-    // عرض المجموع والنسبة المئوية داخل صفحة النتيجة
-    document.getElementById("total-grade").textContent = `المجموع: ${total} / 320`;
-    document.getElementById("percentage").textContent = `النسبة المئوية: ${percentage}%`;
-}
-<script>
-  // مثال: جلب الدرجات من العناصر أو من كائن محفوظ
-  const degrees = {
-    arabic: parseInt(document.getElementById("arabic").innerText),
-    english: parseInt(document.getElementById("english").innerText),
-    secondLang: parseInt(document.getElementById("secondLang").innerText),
-    philosophy: parseInt(document.getElementById("philosophy").innerText),
-    history: parseInt(document.getElementById("history").innerText),
-    geography: parseInt(document.getElementById("geography").innerText),
-    biology: parseInt(document.getElementById("biology").innerText),
-    chemistry: parseInt(document.getElementById("chemistry").innerText),
-    physics: parseInt(document.getElementById("physics").innerText),
-    geology: parseInt(document.getElementById("geology").innerText),
-    mathPure: parseInt(document.getElementById("mathPure").innerText),
-    mathApplied: parseInt(document.getElementById("mathApplied").innerText)
-  };
-
-  // حساب المجموع
-  const total = Object.values(degrees).reduce((a, b) => a + b, 0);
-
-  // المجموع الكلي حسب الشعبة (مثلاً علمي علوم)
-  const maxTotal = 80 + 5 * 60;
-
-  // حساب النسبة
-  const percentage = ((total / maxTotal) * 100).toFixed(2);
-
-  // عرضها في الصفحة
-  document.getElementById("percentage").innerText = `النسبة المئوية: ${percentage}%`;
-</script>
