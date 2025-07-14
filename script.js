@@ -94,3 +94,32 @@ function displayResult() {
     document.getElementById("total-grade").textContent = `المجموع: ${total} / 320`;
     document.getElementById("percentage").textContent = `النسبة المئوية: ${percentage}%`;
 }
+<script>
+  // مثال: جلب الدرجات من العناصر أو من كائن محفوظ
+  const degrees = {
+    arabic: parseInt(document.getElementById("arabic").innerText),
+    english: parseInt(document.getElementById("english").innerText),
+    secondLang: parseInt(document.getElementById("secondLang").innerText),
+    philosophy: parseInt(document.getElementById("philosophy").innerText),
+    history: parseInt(document.getElementById("history").innerText),
+    geography: parseInt(document.getElementById("geography").innerText),
+    biology: parseInt(document.getElementById("biology").innerText),
+    chemistry: parseInt(document.getElementById("chemistry").innerText),
+    physics: parseInt(document.getElementById("physics").innerText),
+    geology: parseInt(document.getElementById("geology").innerText),
+    mathPure: parseInt(document.getElementById("mathPure").innerText),
+    mathApplied: parseInt(document.getElementById("mathApplied").innerText)
+  };
+
+  // حساب المجموع
+  const total = Object.values(degrees).reduce((a, b) => a + b, 0);
+
+  // المجموع الكلي حسب الشعبة (مثلاً علمي علوم)
+  const maxTotal = 80 + 5 * 60;
+
+  // حساب النسبة
+  const percentage = ((total / maxTotal) * 100).toFixed(2);
+
+  // عرضها في الصفحة
+  document.getElementById("percentage").innerText = `النسبة المئوية: ${percentage}%`;
+</script>
