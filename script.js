@@ -45,10 +45,10 @@ function generateGrades(division) {
       grade = 0;
     } else {
       if (subject === "اللغة العربية") {
-        grade = Math.floor(Math.random() * 31) + 50; // 55 إلى 80
-      } else {
-        grade = Math.floor(Math.random() * 31) + 30; // 50 إلى 60
-      }
+    grade = Math.floor(Math.random() * 19) + 62; // من 62 إلى 80
+} else {
+    grade = Math.floor(Math.random() * 16) + 45; // من 45 إلى 60
+}
     }
 
     return {
@@ -73,4 +73,24 @@ if (window.location.pathname.includes("result.html")) {
     li.textContent = `${item.name}: ${item.grade}`;
     gradesList.appendChild(li);
   });
+}
+// بعد حساب درجات المواد داخل صفحة result.html
+
+function calculatePercentage(totalGrades) {
+    const maxTotal = 320; // المجموع الكلي النهائي
+    const percentage = (totalGrades / maxTotal) * 100;
+    return percentage.toFixed(2); // ترجيع النسبة برقم عشري من خانتين
+}
+
+// مثال: حساب مجموع الدرجات وإظهار النسبة
+function displayResult() {
+    const grades = JSON.parse(localStorage.getItem('studentGrades') || '[]');
+    const total = grades.reduce((sum, g) => sum + g.grade, 0);
+
+    // حساب النسبة المئوية
+    const percentage = calculatePercentage(total);
+
+    // عرض المجموع والنسبة المئوية داخل صفحة النتيجة
+    document.getElementById("total-grade").textContent = `المجموع: ${total} / 320`;
+    document.getElementById("percentage").textContent = `النسبة المئوية: ${percentage}%`;
 }

@@ -1,45 +1,38 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>وزارة التربية والتعليم - الثانوية العامة 2025</title>
-  <style>
-    body { font-family: 'Arial'; background-color: white; color: #000; text-align: center; margin-top: 50px; }
-    input, select { padding: 10px; margin: 10px; width: 300px; }
-    button { padding: 10px 20px; background-color: #007bff; color: white; border: none; cursor: pointer; }
-    .logo { width: 100px; margin-bottom: 20px; }
-  </style>
+  <title>وزارة التربية والتعليم</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Coat_of_arms_of_Egypt_%28Official%29.svg/2048px-Coat_of_arms_of_Egypt_%28Official%29.svg.png" class="logo" alt="شعار الوزارة" />
-  <h1>وزارة التربية والتعليم المصرية</h1>
-  <h2>نتيجة الثانوية العامة 2025</h2>
-  <form onsubmit="saveData(event)">
-    <input type="text" id="name" placeholder="اسم الطالب" required><br>
-    <input type="text" id="seat" placeholder="رقم الجلوس" required><br>
-    <input type="text" id="national" placeholder="الرقم القومي" required><br>
-    <select id="division" required>
-      <option value="">اختر الشعبة</option>
-      <option value="علمي علوم">علمي علوم</option>
-      <option value="علمي رياضة">علمي رياضة</option>
-      <option value="أدبي">أدبي</option>
-    </select><br>
-    <button type="submit">عرض النتيجة</button>
-  </form>
-  <p style="margin-top: 100px;">جميع الحقوق محفوظة © وزارة التربية والتعليم المصرية</p>
-  <script>
-    function saveData(e) {
-      e.preventDefault();
-      const data = {
-        name: document.getElementById("name").value,
-        seat: document.getElementById("seat").value,
-        national: document.getElementById("national").value,
-        division: document.getElementById("division").value
-      };
-      localStorage.setItem("studentData", JSON.stringify(data));
-      window.location.href = "certificate.html";
-    }
-  </script>
+  <div class="container">
+    <header class="moe-header">
+      <img src="logo.png" alt="شعار وزارة التربية والتعليم" class="moe-logo">
+      <h1>وزارة التربية والتعليم</h1>
+    </header>
+    <h2>نتيجة الثانوية العامة 2025</h2>
+    <form onsubmit="goToResult(event)">
+      <label>اسم الطالب:</label>
+      <input type="text" id="name" required>
+
+      <label>رقم الجلوس:</label>
+      <input type="text" id="seat" required>
+
+      <label>الرقم القومي:</label>
+      <input type="text" id="nid" required>
+
+      <label>شعبة الطالب:</label>
+      <select id="division" required>
+        <option value="">-- اختر الشعبة --</option>
+        <option value="علمي علوم">علمي علوم</option>
+        <option value="علمي رياضة">علمي رياضة</option>
+        <option value="أدبي">أدبي</option>
+      </select>
+
+      <button type="submit">عرض النتيجة</button>
+    </form>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
